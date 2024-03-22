@@ -9,6 +9,7 @@ class TasksScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Tasks'),
+        backgroundColor: Color.fromARGB(255, 102, 215, 106),
       ),
       body: Padding(
         padding: EdgeInsets.all(20.0),
@@ -19,14 +20,46 @@ class TasksScreen extends StatelessWidget {
               'Daily Tasks',
               style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 10),
-            _buildTaskItem(
-                context, 'Take a Photo', 'Earn 50 EcoCoins', Icons.camera_alt),
-            _buildTaskItem(context, 'Public Transport', 'Earn 30 EcoCoins',
-                Icons.directions_bus),
-            _buildTaskItem(context, 'Reusable Bag', 'Earn 20 EcoCoins',
-                Icons.shopping_bag),
-            // Add more tasks as needed
+            SizedBox(height: 20.0),
+            Expanded(
+              child: ListView(
+                children: [
+                  TaskCard(
+                    title: 'Take a Walk',
+                    description: 'Earn 20 EcoCoins per km',
+                    icon: Icons.camera_alt,
+                    onPressed: () {
+                      _handleTaskCompletion(context);
+                    },
+                  ),
+                  TaskCard(
+                    title: 'Take Public Transport',
+                    description: 'Earn 50 EcoCoins per km',
+                    icon: Icons.directions_bus,
+                    onPressed: () {
+                      _handleTaskCompletion(context);
+                    },
+                  ),
+                  TaskCard(
+                    title: 'Plant a tree',
+                    description: 'Earn 100 EcoCoins',
+                    icon: Icons.shopping_bag,
+                    onPressed: () {
+                      _handleTaskCompletion(context);
+                    },
+                  ),
+                  TaskCard(
+                    title: 'More',
+                    description: 'Earn 30 EcoCoins',
+                    icon: Icons.shopping_bag,
+                    onPressed: () {
+                      _handleTaskCompletion(context);
+                    },
+                  ),
+                  // Add more tasks as needed
+                ],
+              ),
+            ),
           ],
         ),
       ),
@@ -44,16 +77,64 @@ class TasksScreen extends StatelessWidget {
       ),
     );
   }
+}
 
-  Widget _buildTaskItem(BuildContext context, String title, String description,
-      IconData iconData) {
-    return ListTile(
-      leading: Icon(iconData),
-      title: Text(title),
-      subtitle: Text(description),
-      onTap: () {
-        _handleTaskCompletion(context);
-      },
+class TaskCard extends StatelessWidget {
+  final String title;
+  final String description;
+  final IconData icon;
+  final VoidCallback? onPressed;
+
+  const TaskCard({
+    Key? key,
+    required this.title,
+    required this.description,
+    required this.icon,
+    this.onPressed,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      elevation: 4.0,
+      margin: EdgeInsets.only(bottom: 20.0),
+      child: InkWell(
+        onTap: onPressed,
+        child: Padding(
+          padding: EdgeInsets.all(20.0),
+          child: Row(
+            children: [
+              Icon(
+                icon,
+                size: 32.0,
+                color: Theme.of(context).primaryColor,
+              ),
+              SizedBox(width: 20.0),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      title,
+                      style: TextStyle(
+                        fontSize: 18.0,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    SizedBox(height: 8.0),
+                    Text(
+                      description,
+                      style: TextStyle(
+                        fontSize: 16.0,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

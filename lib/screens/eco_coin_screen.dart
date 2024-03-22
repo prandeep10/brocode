@@ -6,6 +6,7 @@ class EcoCoinScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('EcoCoin'),
+        backgroundColor: Color.fromARGB(255, 102, 215, 106),
       ),
       body: Padding(
         padding: EdgeInsets.all(20.0),
@@ -33,8 +34,8 @@ class EcoCoinScreen extends StatelessWidget {
                 itemBuilder: (context, index) {
                   // Dummy transaction data
                   String date = '2024-03-22';
-                  String amount = '+50';
-                  String description = 'Completed recycling task';
+                  String amount = '+100';
+                  String description = 'Planted a tree';
                   return ListTile(
                     leading: Icon(Icons.monetization_on),
                     title: Text('$amount EcoCoins'),

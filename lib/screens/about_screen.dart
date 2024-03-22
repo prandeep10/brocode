@@ -1,12 +1,24 @@
 import 'package:flutter/material.dart';
 
+// Custom AppBar widget
+class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
+  @override
+  Widget build(BuildContext context) {
+    return AppBar(
+      title: Text('EcoFront'),
+      backgroundColor: Color.fromARGB(255, 102, 215, 106),
+    );
+  }
+
+  @override
+  Size get preferredSize => Size.fromHeight(kToolbarHeight);
+}
+
 class AboutScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('About'),
-      ),
+      appBar: CustomAppBar(), // Use the CustomAppBar here
       body: Padding(
         padding: EdgeInsets.all(20.0),
         child: Column(
