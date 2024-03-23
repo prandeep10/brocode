@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'product_page.dart';
 
 class ShopScreen extends StatelessWidget {
   final List<String> dummyImageUrls = [
@@ -28,13 +29,13 @@ class ShopScreen extends StatelessWidget {
           // Assuming each product has a unique price and coins value
           double price = 99.99; // Example price
           int coins = 1000; // Example coins
-          return _buildProductCard(dummyImageUrls[index], price, coins);
+          return _buildProductCard(context, dummyImageUrls[index], price, coins);
         },
       ),
     );
   }
 
-  Widget _buildProductCard(String imageUrl, double price, int coins) {
+  Widget _buildProductCard(BuildContext context, String imageUrl, double price, int coins) {
     return Card(
       elevation: 4.0,
       shape: RoundedRectangleBorder(
@@ -104,11 +105,42 @@ class ShopScreen extends StatelessWidget {
                     ),
                   ],
                 ),
+                SizedBox(height: 8.0),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    ElevatedButton(
+                      onPressed: () {
+                        navigateToProductPage(context, imageUrl);
+                      },
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all<Color>(Color(0xFF75EE7B)),
+                      ),
+                      child: Text('Buy', style: TextStyle(color: Colors.white)),
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        navigateToProductPage(context, imageUrl);
+                      },
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all<Color>(Color(0xFF75EE7B)),
+                      ),
+                      child: Text('Redeem', style: TextStyle(color: Colors.white)),
+                    ),
+                  ],
+                ),
               ],
             ),
           ),
         ],
       ),
+    );
+  }
+
+  void navigateToProductPage(BuildContext context, String imageUrl) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => ProductPage(imageUrl: imageUrl)),
     );
   }
 }
