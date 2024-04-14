@@ -1,4 +1,8 @@
-# ecofront
+# Flutter Project dedicated for providing environment friendly solutions.
+# Jorhat-Engineering-College, HackVita2024: 2nd-Position-Winner
+## Includes features like:
+### 1) Eco-Market : a marketplace for selling ecofriendly products.
+### 2) Daily-Task : earn daily rewards/ eco-coins for doing task to save the environment like using public transport, etc.
 
 A new Flutter project.
 
